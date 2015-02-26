@@ -1,0 +1,25 @@
+puppetmaster:
+  files:
+    '/etc/puppet/puppet.conf':
+      template : "%{module_name}/puppet_master.erb"
+
+    '/etc/puppet/environments/%{environment}/environment.conf':
+      template : "%{module_name}/puppet_environment.erb"
+
+  host:
+    "%{hostname}":
+     ip: "%{ipaddress_eth0}" 
+     target : /etc/hosts
+     host_aliases:
+       - puppet
+       - puppetmaster
+       - "%{hostname}"
+
+file_defaults:
+    ensure: 'file'
+
+service_defaults:
+  hasstatus : true
+  hasrestart: true
+  enable    : true
+  ensure    : running

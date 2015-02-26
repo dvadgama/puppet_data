@@ -1,0 +1,8 @@
+puppetmaster:
+  packages:
+    puppetmaster: 
+      ensure: 'installed'
+ 
+  services:
+    puppetmaster:
+      name: 'puppetmaster'
